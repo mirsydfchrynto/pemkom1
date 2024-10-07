@@ -231,16 +231,8 @@ public class LOGIN extends javax.swing.JFrame {
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
     }
-//        HOME hm = new HOME();
-//            hm.setVisible(true);
-//            this.setVisible(false);
-//            hm.pack();
-//            hm.setLocationRelativeTo(null); 
-//            hm.setDefaultCloseOperation(LOGIN.EXIT_ON_CLOSE);
-//           this.setVisible(false);
-//           HalamanAdmin H = new HalamanAdmin();
-//           H.setVisible(true);
-            
+
+          
     }//GEN-LAST:event_ButtonLoginActionPerformed
 
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
@@ -255,7 +247,7 @@ public class LOGIN extends javax.swing.JFrame {
             new LOGIN().setVisible(true);
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonLogin;
     private javax.swing.JLabel jLabel1;

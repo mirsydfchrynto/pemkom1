@@ -10,10 +10,9 @@ import java.awt.event.ActionListener;
 
 public class HalamanKasir extends javax.swing.JFrame {
 
-   private String nama;  // Menyimpan nama pengguna yang login
 
+    // Menyimpan nama pengguna yang login
     public HalamanKasir(String nama) {
-        this.nama = nama;  // Simpan nama pengguna yang login
         initComponents();
         txtnama.setText(nama);     // Tampilkan nama pengguna
     }

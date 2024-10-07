@@ -5,10 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HalamanOwner extends javax.swing.JFrame {
-   private String nama;
 
     public HalamanOwner(String nama) {
-        this.nama = nama;
         initComponents();
         txtnama.setText(nama);
     }
