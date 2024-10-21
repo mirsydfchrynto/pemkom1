@@ -12,13 +12,13 @@ public class config {
     public static Connection configDB() throws SQLException {
         try {
             // URL yang mengarah ke database 'irsyad'
-            String url = "jdbc:mysql://localhost:3306/irsyad";
+            String url = "jdbc:mysql://localhost:3306/PointOfSale";
             String user = "root";
             String pass = ""; // Jika ada password, tambahkan di sini
 
             // Coba register driver MySQL jika perlu (biasanya otomatis jika JDBC di path)
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            
+
             // Mencoba membuat koneksi ke database
             mysqlconfig = DriverManager.getConnection(url, user, pass);
             System.out.println("Koneksi berhasil!");

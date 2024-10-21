@@ -209,7 +209,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        tampilandatauser tu = new tampilandatauser();
+        tampilandatauser tu = new tampilandatauser(txtnama.getText(), "admin");
         tu.setVisible(true);
         this.dispose();
         

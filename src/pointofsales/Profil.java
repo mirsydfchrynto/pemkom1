@@ -14,12 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class Profil extends javax.swing.JFrame {
-    private String nama;
-    private String level;
+    private final String nama;
 
     public Profil(String nama, String level) {
         this.nama = nama;
-        this.level = level;
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         GetProfile();
@@ -231,7 +229,8 @@ public class Profil extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        HalamanAdmin ad = new HalamanAdmin(Nama.getText(), "admin");
+        HalamanAdmin ad;
+        ad = new HalamanAdmin(Nama.getText(), "admin");
         ad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

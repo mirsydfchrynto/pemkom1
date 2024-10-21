@@ -210,46 +210,38 @@ public class LOGIN extends javax.swing.JFrame {
             return;
         }
 
-        try {
-            try (Connection conn = config.configDB()) {
-                String sql = "SELECT level, nama FROM akun WHERE username = ? AND password = ?";
-                PreparedStatement pst = conn.prepareStatement(sql);
+        try (Connection conn = config.configDB()) {
+            String sql = "SELECT level, nama FROM akun WHERE username = ? AND password = ?";
+            try (PreparedStatement pst = conn.prepareStatement(sql)) {
                 pst.setString(1, username);
                 pst.setString(2, new String(password));
 
-                ResultSet rs = pst.executeQuery();
+                try (ResultSet rs = pst.executeQuery()) {
+                    if (rs.next()) {
+                        String level = rs.getString("level");
+                        String nama = rs.getString("nama");
 
-                if (rs.next()) {
-                    String level = rs.getString("level");
-                    String nama = rs.getString("nama");
+                        JFrame frame = null;
+                        switch (level) {
+                            case "owner" -> frame = new HalamanOwner(nama);
+                            case "kasir" -> frame = new HalamanKasir(nama);
+                            case "admin" -> frame = new HalamanAdmin(nama, level);
+                            default -> JOptionPane.showMessageDialog(this, "Level pengguna tidak dikenal!");
+                        }
 
-                    switch (level) {
-                        case "owner" -> {
-                            HalamanOwner ho = new HalamanOwner(nama);
-                            ho.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maksimalkan jendela
-                            ho.setVisible(true);
-                            this.dispose(); // Tutup jendela login
+                        if (frame != null) {
+                            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                            frame.setVisible(true);
+                            this.dispose();
                         }
-                        case "kasir" -> {
-                            HalamanKasir hk = new HalamanKasir(nama);
-                            hk.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maksimalkan jendela
-                            hk.setVisible(true);
-                            this.dispose(); // Tutup jendela login
-                        }
-                        case "admin" -> {
-                            HalamanAdmin ha = new HalamanAdmin(nama, level);
-                            ha.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maksimalkan jendela
-                            ha.setVisible(true);
-                            this.dispose(); // Tutup jendela login
-                        }
-                        default -> JOptionPane.showMessageDialog(this, "Level pengguna tidak dikenal!");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Username atau password salah!");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Username atau password salah!");
                 }
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
+        e.printStackTrace();
     }
 
           
